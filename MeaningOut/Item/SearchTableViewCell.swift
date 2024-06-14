@@ -23,6 +23,9 @@ class SearchTableViewCell: UITableViewCell {
     func configureUI(){
         contentView.backgroundColor = .gray
     }
+    func configureCell(list: String){
+        
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

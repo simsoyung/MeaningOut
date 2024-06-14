@@ -55,5 +55,8 @@ enum TextResource {
         case nicknameCountLabelTrue = "사용할 수 있는 닉네임이에요 :D"
         case nicknameNumFalse = "닉네임에 숫자는 포함할 수 없어요"
         case nicknameCharFalse = "닉네임에 @, #, $, % 는 포함할 수 없어요"
+        case wordNothing = "최근 검색어가 없어요"
+        case recentWord = "최근 검색"
+        case deleteBt = "전체 삭제"
     }
 }

@@ -33,6 +33,7 @@
 		4689FBB12C1C672F00F399B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB02C1C672F00F399B6 /* TabBarController.swift */; };
 		4689FBB32C1C67FE00F399B6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */; };
 		4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */; };
+		4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB62C1CB75000F399B6 /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		4689FBB02C1C672F00F399B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		4689FBB62C1CB75000F399B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				4689FB9F2C1BF1C100F399B6 /* NicknameTextField.swift */,
 				4689FBA12C1C08DE00F399B6 /* ControlLabel.swift */,
 				4689FBAE2C1C538F00F399B6 /* UserDefaults.swift */,
+				4689FBB62C1CB75000F399B6 /* Extension.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				4689FBA62C1C27E300F399B6 /* ImageSettingViewController.swift in Sources */,
 				4689FB972C1B0B5F00F399B6 /* Resource.swift in Sources */,
 				4689FB9A2C1B0DBB00F399B6 /* ProfileViewController.swift in Sources */,
+				4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */,
 				4689FBAD2C1C2D5100F399B6 /* ImageCollectionViewCell.swift in Sources */,
 				4689FBAF2C1C538F00F399B6 /* UserDefaults.swift in Sources */,
 				4687DFA82C1AF32E00DB5CB1 /* SceneDelegate.swift in Sources */,

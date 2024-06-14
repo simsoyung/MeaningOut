@@ -7,10 +7,12 @@
 
 import UIKit
 
+
+
 class UserDefaultManager {
     var imageIndex: String{
         get{
-            return UserDefaults.standard.string(forKey: "imageNum") ?? "0"
+            return UserDefaults.standard.string(forKey: "imageNum") ?? ""
         }
         set{
             UserDefaults.standard.set("profile_\(newValue)", forKey: "imageNum")
@@ -19,19 +21,21 @@ class UserDefaultManager {
     
     var nickname: String{
         get{
-            return UserDefaults.standard.string(forKey: "nickname") ?? "새콤달콤"
+            return UserDefaults.standard.string(forKey: "nickname") ?? ""
         }
         set{
             UserDefaults.standard.set(newValue, forKey: "nickname")
         }
     }
     
-    var searchWord: String{
-        get{
-            return UserDefaults.standard.string(forKey: "word") ?? "강아지"
-        }
-        set{
-            UserDefaults.standard.set(newValue, forKey: "word")
-        }
-    }
+    
+//    var word: [String]{
+//        get{
+//            return UserDefaults.standard.array(forKey: "wordList") as? [String]
+//        }
+//        set{
+//            UserDefaults.standard.set(list, forKey: "word")
+//        }
+//    }
 }
+

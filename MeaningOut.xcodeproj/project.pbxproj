@@ -30,6 +30,9 @@
 		4689FBA82C1C280300F399B6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBA72C1C280300F399B6 /* MainViewController.swift */; };
 		4689FBAD2C1C2D5100F399B6 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBAC2C1C2D5100F399B6 /* ImageCollectionViewCell.swift */; };
 		4689FBAF2C1C538F00F399B6 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBAE2C1C538F00F399B6 /* UserDefaults.swift */; };
+		4689FBB12C1C672F00F399B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB02C1C672F00F399B6 /* TabBarController.swift */; };
+		4689FBB32C1C67FE00F399B6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */; };
+		4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,9 @@
 		4689FBA72C1C280300F399B6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4689FBAC2C1C2D5100F399B6 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		4689FBAE2C1C538F00F399B6 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		4689FBB02C1C672F00F399B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +130,9 @@
 				4687DFA92C1AF32E00DB5CB1 /* ViewController.swift */,
 				4689FB992C1B0DBB00F399B6 /* ProfileViewController.swift */,
 				4689FBA52C1C27E300F399B6 /* ImageSettingViewController.swift */,
+				4689FBB02C1C672F00F399B6 /* TabBarController.swift */,
 				4689FBA72C1C280300F399B6 /* MainViewController.swift */,
+				4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				4689FBAC2C1C2D5100F399B6 /* ImageCollectionViewCell.swift */,
+				4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -223,12 +232,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				4687DFAA2C1AF32E00DB5CB1 /* ViewController.swift in Sources */,
+				4689FBB12C1C672F00F399B6 /* TabBarController.swift in Sources */,
 				4689FBA82C1C280300F399B6 /* MainViewController.swift in Sources */,
 				4689FB9E2C1B26DD00F399B6 /* CameraButton.swift in Sources */,
 				4689FBA22C1C08DE00F399B6 /* ControlLabel.swift in Sources */,
+				4689FBB32C1C67FE00F399B6 /* SettingViewController.swift in Sources */,
 				4689FB9C2C1B186900F399B6 /* ProfileImage.swift in Sources */,
 				4687DFA62C1AF32E00DB5CB1 /* AppDelegate.swift in Sources */,
 				4687DFBD2C1AF4CF00DB5CB1 /* API.swift in Sources */,
+				4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */,
 				4689FBA62C1C27E300F399B6 /* ImageSettingViewController.swift in Sources */,
 				4689FB972C1B0B5F00F399B6 /* Resource.swift in Sources */,
 				4689FB9A2C1B0DBB00F399B6 /* ProfileViewController.swift in Sources */,
@@ -380,6 +392,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H432N7AT3B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeaningOut/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MeaningOut;
@@ -412,6 +425,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = H432N7AT3B;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeaningOut/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MeaningOut;

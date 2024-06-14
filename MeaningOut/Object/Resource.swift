@@ -11,6 +11,8 @@ enum TextResource {
     enum ButtonText: String {
         case start = "시작하기"
         case finish = "완료"
+        case tabBarSearch = "검색"
+        case tabBarSetting = "설정"
     }
     
     enum NaviText: String {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 import SnapKit
 
 class ProfileViewController: UIViewController {
@@ -26,6 +27,7 @@ class ProfileViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureUI()
+        selecteButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,6 +84,14 @@ class ProfileViewController: UIViewController {
     
     @objc func selecteButtonTapped(){
         navigationController?.pushViewController(MainViewController(), animated: true)
+        ud.nickname = textField.text ?? ""
+        UserDefaults.standard.set(true, forKey: "isUser")
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        let rootViewController = UINavigationController(rootViewController: MainViewController())
+        
+        sceneDelegate?.window?.rootViewController = rootViewController
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
 
 }
@@ -104,16 +114,21 @@ extension ProfileViewController: UITextFieldDelegate {
         guard let text = textField.text else { return false }
         if text.count >= maxLength {
             controlLabel.text = TextResource.LabelText.nicknameCountLabelFalse.rawValue
+            selecteButton.isEnabled = false
         } else if text.count < minLength {
             controlLabel.text = TextResource.LabelText.nicknameCountLabelFalse.rawValue
+            selecteButton.isEnabled = false
         } else {
             controlLabel.text = TextResource.LabelText.nicknameCountLabelTrue.rawValue
+            selecteButton.isEnabled = true
         }
         if (text.rangeOfCharacter(from: char) != nil) {
             controlLabel.text = TextResource.LabelText.nicknameCharFalse.rawValue
+            selecteButton.isEnabled = false
         }
         if (text.rangeOfCharacter(from: num) != nil){
             controlLabel.text = TextResource.LabelText.nicknameNumFalse.rawValue
+            selecteButton.isEnabled = false
         }
         return true
     }

@@ -25,4 +25,13 @@ class UserDefaultManager {
             UserDefaults.standard.set(newValue, forKey: "nickname")
         }
     }
+    
+    var searchWord: String{
+        get{
+            return UserDefaults.standard.string(forKey: "word") ?? "강아지"
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "word")
+        }
+    }
 }

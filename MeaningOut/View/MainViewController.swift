@@ -85,6 +85,7 @@ class MainViewController: UIViewController {
     
     @objc func cancelBtTapped(sender: UIButton){
         wordList.remove(at: sender.tag)
+        print("\(sender.tag)")
         tableView.reloadData()
     }
 
@@ -132,9 +133,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
 extension MainViewController: UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         if let text = searchBar.text {
-            wordList.append("\(text)")
-            UserDefaults.standard.set(self.wordList, forKey: "word")
-            tableView.reloadData()
+            if text.isEmpty {
+                return false
+            } else {
+                wordList.append("\(text)")
+                UserDefaults.standard.set(self.wordList, forKey: "word")
+                tableView.reloadData()
+            }
         }
         return true
     }

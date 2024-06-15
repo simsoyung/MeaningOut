@@ -15,10 +15,8 @@ class MainViewController: UIViewController {
     var wordList: [String] = []
     let ud = UserDefaultManager()
     let search = UISearchController()
-    let tableView = UITableView()
-    let emptyView = UIImageView()
-    let emptyLable = UILabel()
     let deleteButton = UIButton()
+    let tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,24 +30,16 @@ class MainViewController: UIViewController {
         configureLayout()
         configureUI()
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+
         if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
             wordList = items
             tableView.reloadData()
         }
+        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
+        tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.id)
     }
     
-    func configureHierarchy(){
-        view.addSubview(tableView)
-        view.addSubview(deleteButton)
-        view.addSubview(emptyView)
-        view.addSubview(emptyLable)
-        tableView.delegate = self
-        tableView.dataSource = self
-        search.searchBar.delegate = self
-        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
-    }
     func configureLayout(){
-        if UserDefaults.standard.stringArray(forKey: "word") != nil {
             deleteButton.snp.makeConstraints { make in
                 make.top.equalTo(view.safeAreaLayoutGuide).inset(25)
                 make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -59,24 +49,19 @@ class MainViewController: UIViewController {
             tableView.snp.makeConstraints { make in
                 make.edges.equalTo(view.safeAreaLayoutGuide)
             }
-        } else {
-            emptyView.snp.makeConstraints { make in
-                make.edges.equalTo(view.safeAreaLayoutGuide)
-            }
-            emptyLable.snp.makeConstraints { make in
-                make.top.equalTo(emptyView.snp.bottom).inset(150)
-                make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
-                make.height.equalTo(44)
-            }
-        }
+    }
+
+    func configureHierarchy(){
+        view.addSubview(tableView)
+        view.addSubview(deleteButton)
+        tableView.delegate = self
+        tableView.dataSource = self
+        search.searchBar.delegate = self
     }
 
     func configureUI(){
         view.backgroundColor = .white
         search.searchBar.placeholder = TextResource.TextFieldPlaceholder.search.rawValue
-        emptyView.contentMode = .scaleAspectFit
-        emptyView.image = UIImage(named: "empty")
-        emptyLable.emptyLabel()
         deleteButton.deleteBt()
     }
     
@@ -89,7 +74,15 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if wordList.isEmpty {
+            return 500
+        } else {
+            return 50
+        }
+    }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return TextResource.LabelText.recentWord.rawValue
@@ -101,16 +94,30 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wordList.count
+        if wordList.count == 0 {
+            return 1
+        } else {
+            return wordList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as! SearchTableViewCell
-        let data = wordList[indexPath.row]
-        cell.configureCell(list: data)
-        return cell
+        if wordList.isEmpty {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.id, for: indexPath) as? EmptyTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as? SearchTableViewCell else {
+                return UITableViewCell()
+            }
+            let data = wordList[indexPath.row]
+            cell.configureCell(list: data)
+            return cell
+        }
     }
 }
+
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {

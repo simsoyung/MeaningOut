@@ -19,7 +19,9 @@ class SearchTableViewCell: UITableViewCell {
     }
     
     func configureHierarchy(){}
-    func configureLayout(){}
+    func configureLayout(){
+        
+    }
     func configureUI(){
         contentView.backgroundColor = .gray
     }

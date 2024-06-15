@@ -34,6 +34,7 @@
 		4689FBB32C1C67FE00F399B6 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */; };
 		4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */; };
 		4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB62C1CB75000F399B6 /* Extension.swift */; };
+		4689FBB92C1D4A8200F399B6 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB82C1D4A8200F399B6 /* EmptyTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		4689FBB62C1CB75000F399B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		4689FBB82C1D4A8200F399B6 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				4689FBAC2C1C2D5100F399B6 /* ImageCollectionViewCell.swift */,
 				4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */,
+				4689FBB82C1D4A8200F399B6 /* EmptyTableViewCell.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				4689FBA62C1C27E300F399B6 /* ImageSettingViewController.swift in Sources */,
 				4689FB972C1B0B5F00F399B6 /* Resource.swift in Sources */,
 				4689FB9A2C1B0DBB00F399B6 /* ProfileViewController.swift in Sources */,
+				4689FBB92C1D4A8200F399B6 /* EmptyTableViewCell.swift in Sources */,
 				4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */,
 				4689FBAD2C1C2D5100F399B6 /* ImageCollectionViewCell.swift in Sources */,
 				4689FBAF2C1C538F00F399B6 /* UserDefaults.swift in Sources */,

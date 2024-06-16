@@ -15,6 +15,13 @@ enum TextResource {
         case tabBarSetting = "설정"
     }
     
+    enum TypeButton: String, CaseIterable {
+        case simButton = "정확도"
+        case dateButton = "날짜순"
+        case ascButton = "가격높은순"
+        case dscButton = "가격낮은순"
+    }
+    
     enum NaviText: String {
         case profile = "PROFILE SETTING"
         case userIDtext = "'s MEANING OUT"

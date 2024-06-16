@@ -75,7 +75,6 @@ class MainViewController: UIViewController {
         search.searchBar.placeholder = TextResource.TextFieldPlaceholder.search.rawValue
         deleteButton.deleteBt()
         header.headerLabel()
-        
     }
     
     @objc func deleteButtonTapped(){
@@ -88,10 +87,8 @@ class MainViewController: UIViewController {
     
     @objc func cancelBtTapped(sender: UIButton){
         wordList.remove(at: sender.tag)
-        print("\(sender.tag)")
         tableView.reloadData()
     }
-
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{

@@ -27,15 +27,6 @@ class UserDefaultManager {
             UserDefaults.standard.set(newValue, forKey: "nickname")
         }
     }
-    
-    
-//    var word: [String]{
-//        get{
-//            return UserDefaults.standard.array(forKey: "wordList") as? [String]
-//        }
-//        set{
-//            UserDefaults.standard.set(list, forKey: "word")
-//        }
-//    }
+
 }
 

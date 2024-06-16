@@ -35,6 +35,9 @@
 		4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */; };
 		4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB62C1CB75000F399B6 /* Extension.swift */; };
 		4689FBB92C1D4A8200F399B6 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBB82C1D4A8200F399B6 /* EmptyTableViewCell.swift */; };
+		4689FBBB2C1F41BD00F399B6 /* KakaoSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBBA2C1F41BD00F399B6 /* KakaoSearch.swift */; };
+		4689FBBD2C1F504B00F399B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBBC2C1F504B00F399B6 /* SearchViewController.swift */; };
+		4689FBBF2C1F594900F399B6 /* SearchTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBBE2C1F594900F399B6 /* SearchTypeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,9 @@
 		4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		4689FBB62C1CB75000F399B6 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		4689FBB82C1D4A8200F399B6 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		4689FBBA2C1F41BD00F399B6 /* KakaoSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoSearch.swift; sourceTree = "<group>"; };
+		4689FBBC2C1F504B00F399B6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4689FBBE2C1F594900F399B6 /* SearchTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTypeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,7 @@
 				4687DFA52C1AF32E00DB5CB1 /* AppDelegate.swift */,
 				4687DFA72C1AF32E00DB5CB1 /* SceneDelegate.swift */,
 				4687DFBC2C1AF4CF00DB5CB1 /* API.swift */,
+				4689FBBA2C1F41BD00F399B6 /* KakaoSearch.swift */,
 				4687DFAE2C1AF33100DB5CB1 /* Assets.xcassets */,
 				4687DFB02C1AF33100DB5CB1 /* LaunchScreen.storyboard */,
 				4687DFB32C1AF33100DB5CB1 /* Info.plist */,
@@ -125,6 +132,7 @@
 				4689FBA12C1C08DE00F399B6 /* ControlLabel.swift */,
 				4689FBAE2C1C538F00F399B6 /* UserDefaults.swift */,
 				4689FBB62C1CB75000F399B6 /* Extension.swift */,
+				4689FBBE2C1F594900F399B6 /* SearchTypeButton.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 				4689FBB02C1C672F00F399B6 /* TabBarController.swift */,
 				4689FBA72C1C280300F399B6 /* MainViewController.swift */,
 				4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */,
+				4689FBBC2C1F504B00F399B6 /* SearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,10 +258,13 @@
 				4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */,
 				4689FBA62C1C27E300F399B6 /* ImageSettingViewController.swift in Sources */,
 				4689FB972C1B0B5F00F399B6 /* Resource.swift in Sources */,
+				4689FBBD2C1F504B00F399B6 /* SearchViewController.swift in Sources */,
 				4689FB9A2C1B0DBB00F399B6 /* ProfileViewController.swift in Sources */,
 				4689FBB92C1D4A8200F399B6 /* EmptyTableViewCell.swift in Sources */,
 				4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */,
 				4689FBAD2C1C2D5100F399B6 /* ImageCollectionViewCell.swift in Sources */,
+				4689FBBF2C1F594900F399B6 /* SearchTypeButton.swift in Sources */,
+				4689FBBB2C1F41BD00F399B6 /* KakaoSearch.swift in Sources */,
 				4689FBAF2C1C538F00F399B6 /* UserDefaults.swift in Sources */,
 				4687DFA82C1AF32E00DB5CB1 /* SceneDelegate.swift in Sources */,
 				4689FB932C1B065700F399B6 /* OrangeButton.swift in Sources */,

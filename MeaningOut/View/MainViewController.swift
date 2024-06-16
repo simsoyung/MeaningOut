@@ -24,6 +24,8 @@ class MainViewController: UIViewController {
         if let nickname = UserDefaults.standard.string(forKey: "nickname"){
             navigationItem.title = "\(nickname)\(TextResource.NaviText.userIDtext.rawValue)"
         }
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.tintColor = .black
         navigationItem.searchController = search
         search.hidesNavigationBarDuringPresentation = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
@@ -37,7 +39,8 @@ class MainViewController: UIViewController {
         }
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
         tableView.register(EmptyTableViewCell.self, forCellReuseIdentifier: EmptyTableViewCell.id)
-        tableView.sectionHeaderTopPadding = 30
+        search.searchBar.autocorrectionType = .no
+        search.searchBar.spellCheckingType = .no
     }
     
     func configureLayout(){
@@ -93,6 +96,13 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = wordList[indexPath.row]
+        wordList.append("\(row)")
+        UserDefaults.standard.set(self.wordList, forKey: "word")
+        navigationController?.pushViewController(SearchViewController(), animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if wordList.isEmpty {
             return 500
@@ -139,6 +149,8 @@ extension MainViewController: UISearchBarDelegate {
                 wordList.append("\(text)")
                 UserDefaults.standard.set(self.wordList, forKey: "word")
                 tableView.reloadData()
+                searchBar.text = ""
+                navigationController?.pushViewController(SearchViewController(), animated: true)
             }
         }
         return true

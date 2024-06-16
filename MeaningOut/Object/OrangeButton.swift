@@ -11,7 +11,7 @@ class OrangeButton: UIButton {
     init(title: TextResource.ButtonText){
         super.init(frame: .zero)
         setTitle(title.rawValue, for: .normal)
-        setTitleColor(UIColor.white, for: .normal)
+        setTitleColor(TextResource.ColorRGB.whiteUI, for: .normal)
         backgroundColor = TextResource.ColorRGB.orangeUI
         layer.cornerRadius = 20
         titleLabel?.textAlignment = .center

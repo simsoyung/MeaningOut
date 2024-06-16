@@ -19,7 +19,10 @@ class SearchViewController: UIViewController {
         return label
     }()
     
-    lazy var searchTypeView = UICollectionView(frame: .zero, collectionViewLayout: typeViewLayout())
+    let simButton = SearchTypeButton(type: TextResource.TypeButton.simButton.rawValue)
+    let dateButton = SearchTypeButton(type: TextResource.TypeButton.dateButton.rawValue)
+    let ascButton = SearchTypeButton(type: TextResource.TypeButton.ascButton.rawValue)
+    let dscButton = SearchTypeButton(type: TextResource.TypeButton.dscButton.rawValue)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +37,11 @@ class SearchViewController: UIViewController {
     }
     func configureHierarchy(){
         view.addSubview(numResultLabel)
-        view.addSubview(searchTypeView)
-        searchTypeView.delegate = self
-        searchTypeView.dataSource = self
-        searchTypeView.register(SearchTypeButtonCollectionViewCell.self, forCellWithReuseIdentifier: SearchTypeButtonCollectionViewCell.id)
+        view.addSubview(simButton)
+        view.addSubview(dateButton)
+        view.addSubview(ascButton)
+        view.addSubview(dscButton)
+
     }
     func configureLayout(){
         numResultLabel.snp.makeConstraints { make in
@@ -45,55 +49,37 @@ class SearchViewController: UIViewController {
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.height.equalTo(20)
         }
-        searchTypeView.snp.makeConstraints { make in
+        simButton.snp.makeConstraints { make in
             make.top.equalTo(numResultLabel.snp.bottom).offset(10)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.height.equalTo(35)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.height.equalTo(30)
+            make.width.equalTo(50)
         }
+        dateButton.snp.makeConstraints { make in
+            make.top.equalTo(numResultLabel.snp.bottom).offset(10)
+            make.leading.equalTo(simButton.snp.trailing).offset(10)
+            make.height.equalTo(30)
+            make.width.equalTo(50)
+        }
+        ascButton.snp.makeConstraints { make in
+            make.top.equalTo(numResultLabel.snp.bottom).offset(10)
+            make.leading.equalTo(dateButton.snp.trailing).offset(10)
+            make.height.equalTo(30)
+            make.width.equalTo(80)
+        }
+        dscButton.snp.makeConstraints { make in
+            make.top.equalTo(numResultLabel.snp.bottom).offset(10)
+            make.leading.equalTo(ascButton.snp.trailing).offset(10)
+            make.height.equalTo(30)
+            make.width.equalTo(80)
+        }
+
 
     }
     func configureUI(){
         view.backgroundColor = .white
         numResultLabel.text = "25,994개"
-        
-    }
-    
-    func typeViewLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewFlowLayout()
-        let sectionSpacing: CGFloat = 10
-        let cellSpacing: CGFloat = 10
-        let width = UIScreen.main.bounds.width - (sectionSpacing * 2) - (cellSpacing * 3)
-        layout.itemSize = CGSize(width: width/4, height: width/4)
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = cellSpacing
-        layout.minimumInteritemSpacing = cellSpacing
-        layout.sectionInset = UIEdgeInsets(top: 0, left:cellSpacing, bottom: 0, right: cellSpacing)
-        return layout
     }
 
-}
 
-extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return TextResource.TypeButton.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTypeButtonCollectionViewCell.id, for: indexPath) as! SearchTypeButtonCollectionViewCell
-        if cell.clickCount == 1 {
-            cell.clickCount = 0
-        } else {
-            cell.clickCount += 1
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchTypeButtonCollectionViewCell.id, for: indexPath) as! SearchTypeButtonCollectionViewCell
-        let data = TextResource.TypeButton.allCases[indexPath.item]
-        
-        return cell
-    }
-    
-    
 }

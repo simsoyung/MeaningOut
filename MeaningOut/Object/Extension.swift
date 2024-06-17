@@ -51,6 +51,13 @@ extension UIButton {
         self.setTitle(TextResource.LabelText.deleteBt.rawValue, for: .normal)
         self.setTitleColor(TextResource.ColorRGB.orangeUI, for: .normal)
     }
+    func shopBt(like: Bool){
+        self.setImage(UIImage(named: "like_unselected"), for: .normal)
+        self.layer.cornerRadius = 5
+        self.backgroundColor = TextResource.ColorRGB.grayUI
+        self.alpha = 0.8
+        
+    }
     
 }
 extension UIImageView {

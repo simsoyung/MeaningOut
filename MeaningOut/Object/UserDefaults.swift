@@ -27,6 +27,7 @@ class UserDefaultManager {
             UserDefaults.standard.set(newValue, forKey: "nickname")
         }
     }
+    
 
 }
 

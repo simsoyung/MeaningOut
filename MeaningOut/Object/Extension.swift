@@ -25,6 +25,23 @@ extension UILabel {
         self.textColor = TextResource.ColorRGB.blackUI
         self.font = .systemFont(ofSize: 13, weight: .regular)
     }
+    func mallLabel(){
+        self.textAlignment = .left
+        self.textColor = TextResource.ColorRGB.grayUI
+        self.font = .systemFont(ofSize: 13, weight: .heavy)
+    }
+    func storeSubLabel(){
+        self.textAlignment = .left
+        self.textColor = TextResource.ColorRGB.blackUI
+        self.font = .systemFont(ofSize: 13, weight: .heavy)
+        self.numberOfLines = 2
+    }
+    func priceLabel(){
+        self.textAlignment = .left
+        self.textColor = TextResource.ColorRGB.blackUI
+        self.font = .boldSystemFont(ofSize: 14)
+    }
+    
 }
 
 extension UIButton {
@@ -36,10 +53,32 @@ extension UIButton {
     }
     
 }
-
 extension UIImageView {
     func clockLabel(){
         self.image = UIImage(systemName: TextResource.SystemImageName.clock.rawValue)
         self.tintColor = TextResource.ColorRGB.blackUI
     }
 }
+
+extension String {
+    var htmlEscaped: String {
+        guard let encodedData = self.data(using: .utf8) else {
+            return self
+        }
+        
+        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+            .documentType: NSAttributedString.DocumentType.html,
+            .characterEncoding: String.Encoding.utf8.rawValue
+        ]
+        
+        do {
+            let attributed = try NSAttributedString(data: encodedData,
+                                                    options: options,
+                                                    documentAttributes: nil)
+            return attributed.string
+        } catch {
+            return self
+        }
+    }
+}
+

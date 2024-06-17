@@ -9,14 +9,15 @@ import UIKit
 
 class SearchTypeButton: UIButton {
     
-    init(type: String  ){
+    init(type: String){
         super.init(frame: .zero)
-        setTitle(type, for: .normal)
         setTitleColor(TextResource.ColorRGB.darkGrayUI, for: .normal)
-        layer.cornerRadius = 15
+        backgroundColor = TextResource.ColorRGB.whiteUI
+        setTitle(type, for: .normal)
         titleLabel?.textAlignment = .center
         titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)
         layer.borderWidth = 1
+        layer.cornerRadius = 15
         layer.borderColor = TextResource.ColorRGB.darkGrayCG
     }
     
@@ -25,3 +26,12 @@ class SearchTypeButton: UIButton {
     }
     
 }
+
+extension UIButton.Configuration {
+    static func typeStyle() -> UIButton.Configuration {
+        var configuration = UIButton.Configuration.filled()
+        configuration.cornerStyle = .capsule
+        return configuration
+    }
+}
+

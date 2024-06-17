@@ -39,6 +39,8 @@
 		4689FBBD2C1F504B00F399B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBBC2C1F504B00F399B6 /* SearchViewController.swift */; };
 		4689FBC32C1F898300F399B6 /* SearchTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBC22C1F898300F399B6 /* SearchTypeButton.swift */; };
 		4689FBCE2C2029B700F399B6 /* KakaoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */; };
+		4689FBD02C20AC5400F399B6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBCF2C20AC5400F399B6 /* WebViewController.swift */; };
+		4689FBD22C20D0CC00F399B6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		4689FBBC2C1F504B00F399B6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4689FBC22C1F898300F399B6 /* SearchTypeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTypeButton.swift; sourceTree = "<group>"; };
 		4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoCollectionViewCell.swift; sourceTree = "<group>"; };
+		4689FBCF2C20AC5400F399B6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +151,9 @@
 				4689FBA52C1C27E300F399B6 /* ImageSettingViewController.swift */,
 				4689FBB02C1C672F00F399B6 /* TabBarController.swift */,
 				4689FBA72C1C280300F399B6 /* MainViewController.swift */,
-				4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */,
 				4689FBBC2C1F504B00F399B6 /* SearchViewController.swift */,
+				4689FBCF2C20AC5400F399B6 /* WebViewController.swift */,
+				4689FBB22C1C67FE00F399B6 /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				4689FBB42C1C6D5E00F399B6 /* SearchTableViewCell.swift */,
 				4689FBB82C1D4A8200F399B6 /* EmptyTableViewCell.swift */,
 				4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */,
+				4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */,
 			);
 			path = Item;
 			sourceTree = "<group>";
@@ -257,11 +263,13 @@
 				4689FBB32C1C67FE00F399B6 /* SettingViewController.swift in Sources */,
 				4689FB9C2C1B186900F399B6 /* ProfileImage.swift in Sources */,
 				4687DFA62C1AF32E00DB5CB1 /* AppDelegate.swift in Sources */,
+				4689FBD22C20D0CC00F399B6 /* SettingTableViewCell.swift in Sources */,
 				4687DFBD2C1AF4CF00DB5CB1 /* API.swift in Sources */,
 				4689FBB52C1C6D5E00F399B6 /* SearchTableViewCell.swift in Sources */,
 				4689FBA62C1C27E300F399B6 /* ImageSettingViewController.swift in Sources */,
 				4689FB972C1B0B5F00F399B6 /* Resource.swift in Sources */,
 				4689FBBD2C1F504B00F399B6 /* SearchViewController.swift in Sources */,
+				4689FBD02C20AC5400F399B6 /* WebViewController.swift in Sources */,
 				4689FB9A2C1B0DBB00F399B6 /* ProfileViewController.swift in Sources */,
 				4689FBB92C1D4A8200F399B6 /* EmptyTableViewCell.swift in Sources */,
 				4689FBB72C1CB75000F399B6 /* Extension.swift in Sources */,

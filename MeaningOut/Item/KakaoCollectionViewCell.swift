@@ -12,12 +12,15 @@ class KakaoCollectionViewCell: UICollectionViewCell {
     static let id = "KakaoCollectionViewCell"
     
     var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 0, display: 0, items: [])
+    var ud = UserDefaultManager()
     var likeLsit: [String] = []
     let wordView = UIImageView()
     let nameLabel = UILabel()
     let storeLabel = UILabel()
     let priceLabel = UILabel()
     var shoppingBagButton = UIButton()
+    
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,10 +44,12 @@ class KakaoCollectionViewCell: UICollectionViewCell {
         if sender.isSelected {
             shoppingBagButton.setImage(UIImage(named: "like_selected"), for: .normal)
             shoppingBagButton.backgroundColor = TextResource.ColorRGB.whiteUI
+            ud.like = true
         } else {
             shoppingBagButton.setImage(UIImage(named: "like_unselected"), for: .normal)
             shoppingBagButton.backgroundColor = TextResource.ColorRGB.grayUI
             shoppingBagButton.alpha = 0.8
+            ud.like = false
         }
     }
     func configurecell(data: Item) {
@@ -65,22 +70,6 @@ class KakaoCollectionViewCell: UICollectionViewCell {
                 priceLabel.text = "\(result ?? "")원"
             }
         }
-//        if shoppingBagButton.isSelected {
-//
-//        }
-//        shoppingBagButton.isSelected.toggle()
-//        if shoppingBagButton.isSelected && data.productID != nil {
-//            shoppingBagButton.setImage(UIImage(named: "like_selected"), for: .normal)
-//            likeLsit.append("\(data.productID ?? "")")
-//            UserDefaults.standard.set(self.likeLsit, forKey: "like")
-//            print("\(likeLsit)")
-//        } else {
-//            shoppingBagButton.setImage(UIImage(named: "like_unselected"), for: .normal)
-//            if let items = UserDefaults.standard.array(forKey: "like") as? [String] {
-//                print("\(items)")
-//            }
-//            
-//        }
     }
         func configureHierarchy(){
             contentView.addSubview(wordView)

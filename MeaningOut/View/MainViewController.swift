@@ -144,6 +144,7 @@ extension MainViewController: UISearchBarDelegate {
                 return false
             } else {
                 wordList.append("\(text)")
+                wordList = wordList.uniqued()
                 UserDefaults.standard.set(self.wordList, forKey: "word")
                 tableView.reloadData()
                 searchBar.text = ""

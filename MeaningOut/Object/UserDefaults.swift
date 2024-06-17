@@ -28,5 +28,41 @@ class UserDefaultManager {
         }
     }
     
+    var productName: String{
+        get{
+            return UserDefaults.standard.string(forKey: "productName") ?? ""
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "productName")
+        }
+    }
+    
+    var url: String {
+        get{
+            return UserDefaults.standard.string(forKey: "url") ?? ""
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "url")
+        }
+    }
+    
+    var id: [String] {
+        get{
+            return UserDefaults.standard.stringArray(forKey: "id") ?? [""]
+        }
+        set{
+            UserDefaults.standard.set([newValue], forKey: "id")
+        }
+    }
+    
+    var like: Bool {
+        get{
+            return UserDefaults.standard.bool(forKey: "like")
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "like")
+        }
+    }
+    
 }
 

@@ -14,9 +14,10 @@ class SearchViewController: UIViewController {
     var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 0, display: 0, items: [])
     
     var lastWord = ""
-    let productId: [String] = []
+    var productId: [String] = []
     var startPage = 1
     var totalCount = 30
+    var ud = UserDefaultManager()
     
     var numResultLabel = {
        let label = UILabel()
@@ -36,6 +37,8 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationController?.navigationBar.tintColor = .black
         if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
             if let textWord = items.last {
                 navigationItem.title = "\(textWord)"
@@ -178,6 +181,13 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let data = shoppingList.items?[indexPath.item] else { return }
+        ud.productName = "\(data.title)"
+        ud.url = "\(data.link)"
+        navigationController?.pushViewController(WebViewController(), animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shoppingList.items!.count
     }
@@ -189,7 +199,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.wordView.layer.cornerRadius = 10
         cell.wordView.clipsToBounds = true
         return cell
-    }
+        }
 }
 
 extension SearchViewController: UICollectionViewDataSourcePrefetching {

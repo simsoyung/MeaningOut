@@ -20,3 +20,8 @@ struct Item: Decodable{
     let lprice, hprice, mallName, productID: String?
     let productType, brand, maker: String
 }
+
+struct Like {
+    var didLike: Bool
+    var productID: String
+}

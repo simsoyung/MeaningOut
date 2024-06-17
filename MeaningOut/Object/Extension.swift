@@ -65,6 +65,16 @@ extension UIImageView {
         self.image = UIImage(systemName: TextResource.SystemImageName.clock.rawValue)
         self.tintColor = TextResource.ColorRGB.blackUI
     }
+    
+    func settingImage(){
+        self.image = UIImage(named: ProfileImage.randomImage.randomElement() ?? "profile_0")
+        self.contentMode = .scaleAspectFit
+        self.layer.cornerRadius = 50
+        self.clipsToBounds = true
+        self.layer.masksToBounds = true
+        self.layer.borderColor = TextResource.ColorRGB.orangeCG
+        self.layer.borderWidth = 3
+    }
 }
 
 extension String {
@@ -89,3 +99,9 @@ extension String {
     }
 }
 
+extension Sequence where Element: Hashable {
+    func uniqued() -> [Element] {
+        var set = Set<Element>()
+        return filter { set.insert($0).inserted }
+    }
+}

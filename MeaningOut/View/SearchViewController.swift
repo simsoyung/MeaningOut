@@ -28,10 +28,11 @@ class SearchViewController: UIViewController {
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
-    let simButton = SearchTypeButton(type: TextResource.TypeButton.simButton.rawValue)
-    let dateButton = SearchTypeButton(type: TextResource.TypeButton.dateButton.rawValue)
-    let ascButton = SearchTypeButton(type: TextResource.TypeButton.ascButton.rawValue)
-    let dscButton = SearchTypeButton(type: TextResource.TypeButton.dscButton.rawValue)
+    var btArray = [UIButton]()
+    let simButton = SearchTypeButton(type: TextResource.TypeButton.simButton.rawValue, selected: true)
+    let dateButton = SearchTypeButton(type: TextResource.TypeButton.dateButton.rawValue, selected: false)
+    let ascButton = SearchTypeButton(type: TextResource.TypeButton.ascButton.rawValue, selected: false)
+    let dscButton = SearchTypeButton(type: TextResource.TypeButton.dscButton.rawValue, selected: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,10 @@ class SearchViewController: UIViewController {
                 configureLayout()
                 configureUI()
                 requestSearch(typeText: "sim")
+                btArray.append(simButton)
+                btArray.append(dateButton)
+                btArray.append(ascButton)
+                btArray.append(dscButton)
                 simButton.addTarget(self, action: #selector(simButtonClicked), for: .touchUpInside)
                 dateButton.addTarget(self, action: #selector(dateButtonClicked), for: .touchUpInside)
                 ascButton.addTarget(self, action: #selector(ascButtonClicked), for: .touchUpInside)
@@ -104,20 +109,38 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .white
     }
     
+    func selectOptionBtnAction(_ sender: UIButton) {
+            for Btn in btArray {
+                if Btn == sender {
+                    Btn.isSelected = true
+                    Btn.setTitleColor(TextResource.ColorRGB.whiteUI, for: .selected)
+                    Btn.backgroundColor = TextResource.ColorRGB.darkGrayUI
+                } else {
+                    Btn.isSelected = false
+                    Btn.setTitleColor(TextResource.ColorRGB.darkGrayUI, for: .normal)
+                    Btn.backgroundColor = TextResource.ColorRGB.whiteUI
+                }
+            }
+        }
+    
     @objc func simButtonClicked(){
-            requestSearch(typeText: "sim")
+        requestSearch(typeText: "sim")
+        selectOptionBtnAction(simButton)
     }
     
     @objc func dateButtonClicked(){
-            requestSearch(typeText: "date")
+        requestSearch(typeText: "date")
+        selectOptionBtnAction(dateButton)
     }
     
     @objc func ascButtonClicked(){
         requestSearch(typeText: "asc")
+        selectOptionBtnAction(ascButton)
     }
     
     @objc func dscButtonClicked(){
         requestSearch(typeText: "dsc")
+        selectOptionBtnAction(dscButton)
     }
     func requestSearch(typeText: String){
         let url = "\(API.APIURL.kakaoShoppingURL)"

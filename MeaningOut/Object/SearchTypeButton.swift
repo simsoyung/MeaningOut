@@ -9,10 +9,15 @@ import UIKit
 
 class SearchTypeButton: UIButton {
     
-    init(type: String){
+    init(type: String, selected: Bool){
         super.init(frame: .zero)
-        setTitleColor(TextResource.ColorRGB.darkGrayUI, for: .normal)
-        backgroundColor = TextResource.ColorRGB.whiteUI
+        if selected {
+            setTitleColor(TextResource.ColorRGB.whiteUI, for: .selected)
+            backgroundColor = TextResource.ColorRGB.darkGrayUI
+        } else {
+            setTitleColor(TextResource.ColorRGB.darkGrayUI, for: .normal)
+            backgroundColor = TextResource.ColorRGB.whiteUI
+        }
         setTitle(type, for: .normal)
         titleLabel?.textAlignment = .center
         titleLabel?.font = .systemFont(ofSize: 13, weight: .bold)

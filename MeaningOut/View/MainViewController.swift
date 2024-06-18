@@ -12,12 +12,11 @@ import IQKeyboardManagerSwift
 
 class MainViewController: UIViewController {
     
-    var wordList: [String] = []
+    static var wordList: [String] = []
     let ud = UserDefaultManager()
     let search = UISearchController()
     let deleteButton = UIButton()
     let tableView = UITableView()
-    let header = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,7 @@ class MainViewController: UIViewController {
         configureUI()
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
         if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
-            wordList = items
+            MainViewController.wordList = items
             tableView.reloadData()
         }
         tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.id)
@@ -44,11 +43,6 @@ class MainViewController: UIViewController {
     }
     
     func configureLayout(){
-        header.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
-            make.width.equalTo(30)
-        }
         deleteButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(10)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
@@ -64,7 +58,6 @@ class MainViewController: UIViewController {
     func configureHierarchy(){
         view.addSubview(tableView)
         view.addSubview(deleteButton)
-        view.addSubview(header)
         tableView.delegate = self
         tableView.dataSource = self
         search.searchBar.delegate = self
@@ -74,19 +67,18 @@ class MainViewController: UIViewController {
         view.backgroundColor = .white
         search.searchBar.placeholder = TextResource.TextFieldPlaceholder.search.rawValue
         deleteButton.deleteBt()
-        header.headerLabel()
     }
     
     @objc func deleteButtonTapped(){
         if deleteButton.isEnabled {
-            wordList.removeAll()
+            MainViewController.wordList.removeAll()
             UserDefaults.standard.removeObject(forKey: "word")
             tableView.reloadData()
         }
     }
     
     @objc func cancelBtTapped(sender: UIButton){
-        wordList.remove(at: sender.tag)
+        MainViewController.wordList.remove(at: sender.tag)
         tableView.reloadData()
     }
 }
@@ -94,14 +86,14 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = wordList[indexPath.row]
-        wordList.append("\(row)")
-        UserDefaults.standard.set(self.wordList, forKey: "word")
-        navigationController?.pushViewController(SearchViewController(), animated: true)
+        let row = MainViewController.wordList[indexPath.row]
+        MainViewController.wordList.append("\(row)")
+        UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+            navigationController?.pushViewController(SearchViewController(), animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if wordList.isEmpty {
+        if MainViewController.wordList.isEmpty {
             return 500
         } else {
             return 50
@@ -109,24 +101,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if wordList.count == 0 {
+        if MainViewController.wordList.count == 0 {
             return 1
         } else {
-            return wordList.count
+            return MainViewController.wordList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if wordList.isEmpty {
+        if MainViewController.wordList.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.id, for: indexPath) as? EmptyTableViewCell else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.id, for: indexPath) as? SearchTableViewCell else {
                 return UITableViewCell()
             }
-            let data = wordList[indexPath.row]
+            let data = MainViewController.wordList[indexPath.row]
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.configureCell(list: data)
             cell.cancelButton.tag = indexPath.row
@@ -143,12 +136,14 @@ extension MainViewController: UISearchBarDelegate {
             if text.isEmpty {
                 return false
             } else {
-                wordList.append("\(text)")
-                wordList = wordList.uniqued()
-                UserDefaults.standard.set(self.wordList, forKey: "word")
+                MainViewController.wordList.append("\(text)")
+                MainViewController.wordList = MainViewController.wordList.uniqued()
+                UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
                 tableView.reloadData()
                 searchBar.text = ""
-                navigationController?.pushViewController(SearchViewController(), animated: true)
+                let searchVC = SearchViewController()
+                //searchVC.shoppingList.start = 1
+                navigationController?.pushViewController(searchVC, animated: true)
             }
         }
         return true

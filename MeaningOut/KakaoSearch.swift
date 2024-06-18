@@ -8,8 +8,8 @@
 import UIKit
 
 struct KakaoSearch: Decodable {
-    let lastBuildDate: String
-    let total, start, display: Int
+    let lastBuildDate: String?
+    var total, start, display: Int
     var items: [Item]?
 }
 
@@ -21,7 +21,4 @@ struct Item: Decodable{
     let productType, brand, maker: String
 }
 
-struct Like {
-    var didLike: Bool
-    var productID: String
-}
+

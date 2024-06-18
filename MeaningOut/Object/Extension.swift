@@ -8,12 +8,13 @@
 import UIKit
 
 extension UILabel {
+    
+    
     func emptyLabel(){
         self.text = TextResource.LabelText.wordNothing.rawValue
         self.font = .boldSystemFont(ofSize: 15)
         self.textAlignment = .center
     }
-    
     func headerLabel(){
         self.text = TextResource.LabelText.recentWord.rawValue
         self.textAlignment = .left
@@ -41,6 +42,17 @@ extension UILabel {
         self.textColor = TextResource.ColorRGB.blackUI
         self.font = .boldSystemFont(ofSize: 14)
     }
+    func settingName(){
+        self.textAlignment = .left
+        self.textColor = TextResource.ColorRGB.blackUI
+        self.font = .boldSystemFont(ofSize: 16)
+    }
+    func settingDate(){
+        self.textAlignment = .left
+        self.textColor = TextResource.ColorRGB.grayUI
+        self.font = .systemFont(ofSize: 13, weight: .regular)
+    }
+    
     
 }
 

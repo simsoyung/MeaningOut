@@ -7,14 +7,6 @@
 
 import UIKit
 
-enum SettiingOptions: String, CaseIterable {
-    case shoppingList = "나의 장바구니 목록"
-    case question = "자주 묻는 질문"
-    case inquiry = "1:1 문의"
-    case alarm = "알림 설정"
-    case secession = "탈퇴하기"
-}
-
 enum TextResource {
     enum ButtonText: String {
         case start = "시작하기"
@@ -43,6 +35,7 @@ enum TextResource {
         case clock
         case person
         case xmark
+        case setChervron = "chevron.right"
     }
     
     enum ColorRGB {

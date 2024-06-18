@@ -11,12 +11,10 @@ import Alamofire
 
 class SearchViewController: UIViewController {
     
-    var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 0, display: 0, items: [])
+    var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 1, display: 30, items: [])
     
     var lastWord = ""
-    var productId: [String] = []
-    var startPage = 1
-    var totalCount = 30
+    static var productId: [String] = []
     var ud = UserDefaultManager()
     
     var numResultLabel = {
@@ -151,14 +149,21 @@ class SearchViewController: UIViewController {
             let word = "\(items.last ?? "")"
             lastWord = word
         }
-        let parameter: Parameters = ["query": "\(lastWord)", "display": "\(totalCount)", "start": "\(startPage)", "sort": typeText]
+        let parameter: Parameters = ["query": "\(lastWord)", "display": "\(shoppingList.display)", "start": "\(shoppingList.start)", "sort": typeText]
         let header: HTTPHeaders = ["X-Naver-Client-Id" : API.APIKey.id, "X-Naver-Client-Secret": API.APIKey.key]
         AF.request(url, parameters: parameter, headers: header).responseDecodable(of: KakaoSearch.self) { response in
                 switch response.result {
                 case .success(let value):
-                    self.shoppingList = value
-                    self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
+                    if self.shoppingList.start == 1 {
+                        self.shoppingList = value
+                        self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
+                    } else {
+                        self.shoppingList.items?.append(contentsOf: value.items!)
+                    }
                     self.collectionView.reloadData()
+                    if self.shoppingList.start == 1 {
+                        self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                    }
                 case .failure(let error):
                     print(error)
                 }
@@ -198,11 +203,24 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.configurecell(data: data)
         cell.wordView.layer.cornerRadius = 10
         cell.wordView.clipsToBounds = true
+        if cell.shoppingBagButton.isSelected == true {
+            let id = shoppingList.items?[indexPath.item].productID
+            SearchViewController.productId = ["\(id ?? "")"]
+            UserDefaults.standard.set(id, forKey: "id")
+        }
         return cell
         }
 }
 
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
+        
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        print(shoppingList.total, shoppingList.start)
+        for item in indexPaths {
+            if shoppingList.items!.count - 2 == item.item && shoppingList.total > shoppingList.start{
+                shoppingList.start += shoppingList.display
+                requestSearch(typeText: lastWord)
+            }
+        }
     }
 }

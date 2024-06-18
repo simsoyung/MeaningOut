@@ -83,12 +83,16 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func selecteButtonTapped(){
-        navigationController?.pushViewController(MainViewController(), animated: true)
         ud.nickname = textField.text ?? ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let currentDateString = formatter.string(from: Date())
+        ud.date = "\(currentDateString)"
+        
         UserDefaults.standard.set(true, forKey: "isUser")
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
-        let rootViewController = UINavigationController(rootViewController: MainViewController())
+        let rootViewController = TabBarController()
         
         sceneDelegate?.window?.rootViewController = rootViewController
         sceneDelegate?.window?.makeKeyAndVisible()

@@ -13,7 +13,6 @@ class KakaoCollectionViewCell: UICollectionViewCell {
     
     var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 0, display: 0, items: [])
     var ud = UserDefaultManager()
-    var likeLsit: [String] = []
     let wordView = UIImageView()
     let nameLabel = UILabel()
     let storeLabel = UILabel()
@@ -38,6 +37,7 @@ class KakaoCollectionViewCell: UICollectionViewCell {
     @objc func likeButton(){
         likeClicked(shoppingBagButton)
     }
+
     
     func likeClicked(_ sender: UIButton) {
         sender.isSelected.toggle()

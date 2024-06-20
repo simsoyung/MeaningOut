@@ -18,6 +18,7 @@ class KakaoCollectionViewCell: UICollectionViewCell {
     let storeLabel = UILabel()
     let priceLabel = UILabel()
     var shoppingBagButton = UIButton()
+    var productIdstr: String? = ""
     
     
     
@@ -44,6 +45,8 @@ class KakaoCollectionViewCell: UICollectionViewCell {
         if sender.isSelected {
             shoppingBagButton.setImage(UIImage(named: "like_selected"), for: .normal)
             shoppingBagButton.backgroundColor = TextResource.ColorRGB.whiteUI
+            var word = UserDefaults.standard.stringArray(forKey: "id")
+            word?.append(productIdstr ?? "")
             ud.like = true
         } else {
             shoppingBagButton.setImage(UIImage(named: "like_unselected"), for: .normal)
@@ -70,6 +73,7 @@ class KakaoCollectionViewCell: UICollectionViewCell {
                 priceLabel.text = "\(result ?? "")원"
             }
         }
+        productIdstr = data.productID
     }
         func configureHierarchy(){
             contentView.addSubview(wordView)

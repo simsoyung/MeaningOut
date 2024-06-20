@@ -102,7 +102,7 @@ class SettingViewController: UIViewController {
                 let alert = UIAlertController(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n 탈퇴하시겠습니까?", preferredStyle: .alert)
                 let open = UIAlertAction(title: "확인", style: .default) { _ in
                     UserDefaults.standard.set(false, forKey: "isUser")
-                    UserDefaults.standard.removeObject(forKey: "productName")
+                    UserDefaults.standard.removeObject(forKey: "word")
                     MainViewController.wordList.removeAll()
                     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
                     let sceneDelegate = windowScene?.delegate as? SceneDelegate

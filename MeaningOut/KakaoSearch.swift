@@ -17,7 +17,7 @@ struct Item: Decodable{
     let title: String
     let link: String
     let image: String
-    let lprice, hprice, mallName, productID: String?
+    let lprice, mallName, productID: String?
     let productType, brand, maker: String
 }
 

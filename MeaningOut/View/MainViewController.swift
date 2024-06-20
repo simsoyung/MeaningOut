@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.reloadData()
         if let nickname = UserDefaults.standard.string(forKey: "nickname"){
             navigationItem.title = "\(nickname)\(TextResource.NaviText.userIDtext.rawValue)"
         }
@@ -32,7 +33,7 @@ class MainViewController: UIViewController {
         configureLayout()
         configureUI()
         deleteButton.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
+        if let items = UserDefaults.standard.stringArray(forKey: "word"){
             MainViewController.wordList = items
             tableView.reloadData()
         }
@@ -86,10 +87,13 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? EmptyTableViewCell {
+            return cell.isSelected = false
+        }
         let row = MainViewController.wordList[indexPath.row]
         MainViewController.wordList.append("\(row)")
         UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
-            navigationController?.pushViewController(SearchViewController(), animated: true)
+        navigationController?.pushViewController(SearchViewController(), animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -136,13 +140,15 @@ extension MainViewController: UISearchBarDelegate {
             if text.isEmpty {
                 return false
             } else {
-                MainViewController.wordList.append("\(text)")
-                MainViewController.wordList = MainViewController.wordList.uniqued()
-                UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+                if MainViewController.wordList.contains(text){
+                    print("중복된 글자")
+                } else {
+                    UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+                    MainViewController.wordList.append(text)
+                }
                 tableView.reloadData()
                 searchBar.text = ""
                 let searchVC = SearchViewController()
-                //searchVC.shoppingList.start = 1
                 navigationController?.pushViewController(searchVC, animated: true)
             }
         }

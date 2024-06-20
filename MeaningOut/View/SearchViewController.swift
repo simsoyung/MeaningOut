@@ -43,6 +43,7 @@ class SearchViewController: UIViewController {
                 configureHierarchy()
                 configureLayout()
                 configureUI()
+                UserDefaults.standard.set("sim", forKey: "type")
                 requestSearch(typeText: "sim")
                 btArray.append(simButton)
                 btArray.append(dateButton)
@@ -56,6 +57,7 @@ class SearchViewController: UIViewController {
         }
         
     }
+    
     func configureHierarchy(){
         view.addSubview(numResultLabel)
         view.addSubview(simButton)
@@ -116,6 +118,7 @@ class SearchViewController: UIViewController {
                     Btn.isSelected = true
                     Btn.setTitleColor(TextResource.ColorRGB.whiteUI, for: .selected)
                     Btn.backgroundColor = TextResource.ColorRGB.darkGrayUI
+                    
                 } else {
                     Btn.isSelected = false
                     Btn.setTitleColor(TextResource.ColorRGB.darkGrayUI, for: .normal)
@@ -125,49 +128,59 @@ class SearchViewController: UIViewController {
         }
     
     @objc func simButtonClicked(){
+        shoppingList.start = 1
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "sim")
         selectOptionBtnAction(simButton)
     }
     
     @objc func dateButtonClicked(){
+        shoppingList.start = 1
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "date")
         selectOptionBtnAction(dateButton)
     }
     
     @objc func ascButtonClicked(){
+        shoppingList.start = 1
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "asc")
         selectOptionBtnAction(ascButton)
     }
     
     @objc func dscButtonClicked(){
+        shoppingList.start = 1
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "dsc")
         selectOptionBtnAction(dscButton)
     }
     func requestSearch(typeText: String){
         let url = "\(API.APIURL.kakaoShoppingURL)"
-        if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
+        if let items = UserDefaults.standard.stringArray(forKey: "word") {
             let word = "\(items.last ?? "")"
             lastWord = word
         }
         let parameter: Parameters = ["query": "\(lastWord)", "display": "\(shoppingList.display)", "start": "\(shoppingList.start)", "sort": typeText]
         let header: HTTPHeaders = ["X-Naver-Client-Id" : API.APIKey.id, "X-Naver-Client-Secret": API.APIKey.key]
         AF.request(url, parameters: parameter, headers: header).responseDecodable(of: KakaoSearch.self) { response in
-                switch response.result {
+            switch response.result {
                 case .success(let value):
-                    if self.shoppingList.start == 1 {
-                        self.shoppingList = value
-                        self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
-                    } else {
-                        self.shoppingList.items?.append(contentsOf: value.items!)
-                    }
-                    self.collectionView.reloadData()
-                    if self.shoppingList.start == 1 {
-                        self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-                    }
-                case .failure(let error):
-                    print(error)
+                if self.shoppingList.start == 1 {
+                    self.shoppingList = value
+                    self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
+                    
+                } else {
+                    self.shoppingList.items?.append(contentsOf: value.items!)
                 }
-                    }
+                self.collectionView.reloadData()
+                UserDefaults.standard.set(typeText, forKey: "type")
+                if self.shoppingList.start == 1 {
+                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     func collectionViewLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
@@ -215,11 +228,12 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 extension SearchViewController: UICollectionViewDataSourcePrefetching {
         
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        print(shoppingList.total, shoppingList.start)
         for item in indexPaths {
-            if shoppingList.items!.count - 2 == item.item && shoppingList.total > shoppingList.start{
+            if shoppingList.items!.count - 2 == item.row && shoppingList.total > shoppingList.start{
                 shoppingList.start += shoppingList.display
-                requestSearch(typeText: lastWord)
+                print(shoppingList.start)
+                let type = UserDefaults.standard.string(forKey: "type")
+                requestSearch(typeText: "\(type!)")
             }
         }
     }

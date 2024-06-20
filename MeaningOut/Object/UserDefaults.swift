@@ -38,7 +38,7 @@ class UserDefaultManager {
         }
     }
     
-    var productName: String{
+    var productName: String {
         get{
             return UserDefaults.standard.string(forKey: "productName") ?? ""
         }
@@ -56,12 +56,12 @@ class UserDefaultManager {
         }
     }
     
-    var id: [String] {
+    var id: [String]? {
         get{
-            return UserDefaults.standard.stringArray(forKey: "id") ?? [""]
+            return UserDefaults.standard.stringArray(forKey: "id") 
         }
         set{
-            UserDefaults.standard.set([newValue], forKey: "id")
+            UserDefaults.standard.set(newValue, forKey: "id")
         }
     }
     

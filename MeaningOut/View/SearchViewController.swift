@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 1, display: 30, items: [])
     
     var lastWord = ""
-    static var productId: [String] = []
+    var productId: [String] = []
     var ud = UserDefaultManager()
     
     var numResultLabel = {
@@ -37,7 +37,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationController?.navigationBar.tintColor = .black
-        if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
+        if let items = UserDefaults.standard.stringArray(forKey: "word") {
             if let textWord = items.last {
                 navigationItem.title = "\(textWord)"
                 configureHierarchy()
@@ -116,6 +116,9 @@ class SearchViewController: UIViewController {
             for Btn in btArray {
                 if Btn == sender {
                     Btn.isSelected = true
+                    if Btn.isSelected == true {
+                        UserDefaults.standard.set(self.productId, forKey: "id")
+                    }
                     Btn.setTitleColor(TextResource.ColorRGB.whiteUI, for: .selected)
                     Btn.backgroundColor = TextResource.ColorRGB.darkGrayUI
                     
@@ -131,6 +134,7 @@ class SearchViewController: UIViewController {
         shoppingList.start = 1
         shoppingList.items?.removeAll()
         requestSearch(typeText: "sim")
+        ud.type = "sim"
         selectOptionBtnAction(simButton)
     }
     
@@ -138,6 +142,7 @@ class SearchViewController: UIViewController {
         shoppingList.start = 1
         shoppingList.items?.removeAll()
         requestSearch(typeText: "date")
+        ud.type = "date"
         selectOptionBtnAction(dateButton)
     }
     
@@ -145,6 +150,7 @@ class SearchViewController: UIViewController {
         shoppingList.start = 1
         shoppingList.items?.removeAll()
         requestSearch(typeText: "asc")
+        ud.type = "asc"
         selectOptionBtnAction(ascButton)
     }
     
@@ -152,6 +158,7 @@ class SearchViewController: UIViewController {
         shoppingList.start = 1
         shoppingList.items?.removeAll()
         requestSearch(typeText: "dsc")
+        ud.type = "dsc"
         selectOptionBtnAction(dscButton)
     }
     func requestSearch(typeText: String){
@@ -168,15 +175,14 @@ class SearchViewController: UIViewController {
                 if self.shoppingList.start == 1 {
                     self.shoppingList = value
                     self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
-                    
                 } else {
                     self.shoppingList.items?.append(contentsOf: value.items!)
                 }
-                self.collectionView.reloadData()
-                UserDefaults.standard.set(typeText, forKey: "type")
                 if self.shoppingList.start == 1 {
                     self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
                 }
+                self.collectionView.reloadData()
+                UserDefaults.standard.set(typeText, forKey: "type")
             case .failure(let error):
                 print(error)
             }
@@ -218,8 +224,9 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.wordView.clipsToBounds = true
         if cell.shoppingBagButton.isSelected == true {
             let id = shoppingList.items?[indexPath.item].productID
-            SearchViewController.productId = ["\(id ?? "")"]
             UserDefaults.standard.set(id, forKey: "id")
+            self.productId.append(id ?? "")
+            
         }
         return cell
         }
@@ -231,7 +238,6 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
         for item in indexPaths {
             if shoppingList.items!.count - 2 == item.row && shoppingList.total > shoppingList.start{
                 shoppingList.start += shoppingList.display
-                print(shoppingList.start)
                 let type = UserDefaults.standard.string(forKey: "type")
                 requestSearch(typeText: "\(type!)")
             }

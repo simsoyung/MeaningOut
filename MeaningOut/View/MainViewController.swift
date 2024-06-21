@@ -142,6 +142,8 @@ extension MainViewController: UISearchBarDelegate {
             } else {
                 if MainViewController.wordList.contains(text){
                     print("중복된 글자")
+                    UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+                    MainViewController.wordList.append(text)
                 } else {
                     UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
                     MainViewController.wordList.append(text)

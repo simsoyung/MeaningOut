@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController {
         configureLayout()
         configureUI()
         selecteButton.isEnabled = false
+        textField.autocorrectionType = .no
+        textField.spellCheckingType = .no
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +113,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let minLength = 2
+        let minLength = 1
         let maxLength = 10
         let char: CharacterSet = CharacterSet(charactersIn: "@#$%")
         let num: CharacterSet = CharacterSet(charactersIn: "0123456789")

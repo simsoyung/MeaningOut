@@ -65,12 +65,29 @@ class UserDefaultManager {
         }
     }
     
+    var word: [String]? {
+        get{
+            return UserDefaults.standard.stringArray(forKey: "word")
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "word")
+        }
+    }
+    
     var like: Bool {
         get{
             return UserDefaults.standard.bool(forKey: "like")
         }
         set{
             UserDefaults.standard.set(newValue, forKey: "like")
+        }
+    }
+    var type: String? {
+        get{
+            return UserDefaults.standard.string(forKey: "type")
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "type")
         }
     }
     

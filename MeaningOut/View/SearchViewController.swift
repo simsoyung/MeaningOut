@@ -43,7 +43,7 @@ class SearchViewController: UIViewController {
                 configureHierarchy()
                 configureLayout()
                 configureUI()
-                UserDefaults.standard.set("sim", forKey: "type")
+                //UserDefaults.standard.set("sim", forKey: "type")
                 requestSearch(typeText: "sim")
                 btArray.append(simButton)
                 btArray.append(dateButton)
@@ -133,32 +133,33 @@ class SearchViewController: UIViewController {
     @objc func simButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
-        requestSearch(typeText: "sim")
         ud.type = "sim"
+        requestSearch(typeText: "sim")
+        
         selectOptionBtnAction(simButton)
     }
     
     @objc func dateButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
-        requestSearch(typeText: "date")
         ud.type = "date"
+        requestSearch(typeText: "date")
         selectOptionBtnAction(dateButton)
     }
     
     @objc func ascButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
-        requestSearch(typeText: "asc")
         ud.type = "asc"
+        requestSearch(typeText: "asc")
         selectOptionBtnAction(ascButton)
     }
     
     @objc func dscButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
-        requestSearch(typeText: "dsc")
         ud.type = "dsc"
+        requestSearch(typeText: "dsc")
         selectOptionBtnAction(dscButton)
     }
     func requestSearch(typeText: String){
@@ -178,9 +179,9 @@ class SearchViewController: UIViewController {
                 } else {
                     self.shoppingList.items?.append(contentsOf: value.items!)
                 }
-                if self.shoppingList.start == 1 {
-                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-                }
+                guard self.collectionView.numberOfSections > 0 else { return }
+                print("스크롤 top: \(self.collectionView.numberOfSections)")
+                self.collectionView.setContentOffset(.zero, animated: true)
                 self.collectionView.reloadData()
                 UserDefaults.standard.set(typeText, forKey: "type")
             case .failure(let error):
@@ -239,7 +240,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
             if shoppingList.items!.count - 2 == item.row && shoppingList.total > shoppingList.start{
                 shoppingList.start += shoppingList.display
                 let type = UserDefaults.standard.string(forKey: "type")
-                requestSearch(typeText: "\(type!)")
+                requestSearch(typeText: "\(type ?? "sim")")
             }
         }
     }

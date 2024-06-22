@@ -45,8 +45,6 @@ class KakaoCollectionViewCell: UICollectionViewCell {
         if sender.isSelected {
             shoppingBagButton.setImage(UIImage(named: "like_selected"), for: .normal)
             shoppingBagButton.backgroundColor = TextResource.ColorRGB.whiteUI
-            var word = UserDefaults.standard.stringArray(forKey: "id")
-            word?.append(productIdstr ?? "")
             ud.like = true
         } else {
             shoppingBagButton.setImage(UIImage(named: "like_unselected"), for: .normal)

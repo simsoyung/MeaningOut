@@ -91,8 +91,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
             return cell.isSelected = false
         }
         let row = MainViewController.wordList[indexPath.row]
-        MainViewController.wordList.append("\(row)")
-        UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+        if MainViewController.wordList.contains(row){
+            print("중복된 글자")
+        } else {
+            MainViewController.wordList.append("\(row)")
+            UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+        }
         navigationController?.pushViewController(SearchViewController(), animated: true)
     }
     

@@ -11,7 +11,7 @@ import Kingfisher
 class KakaoCollectionViewCell: UICollectionViewCell {
     static let id = "KakaoCollectionViewCell"
     
-    var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 1, display: 30, items: [])
+    var shoppingList = Item(title: "", link: "", image: "", lprice: "", mallName: "", productID: "",productType: "", brand: "", maker: "")
     var ud = UserDefaultManager()
     let wordView = UIImageView()
     let nameLabel = UILabel()
@@ -45,8 +45,12 @@ class KakaoCollectionViewCell: UICollectionViewCell {
         if sender.isSelected {
             shoppingBagButton.setImage(UIImage(named: "like_selected"), for: .normal)
             shoppingBagButton.backgroundColor = TextResource.ColorRGB.whiteUI
-            var word = UserDefaults.standard.stringArray(forKey: "id")
-            word?.append(productIdstr ?? "")
+            let id = shoppingList.link
+            print(shoppingList.link)
+            SearchViewController.product = ["\(id)"]
+            UserDefaults.standard.set(SearchViewController.product, forKey: "id")
+            print("버튼 클릭하면?\(String(describing: UserDefaults.standard.stringArray(forKey: "id")))")
+            print(SearchViewController.product)
             ud.like = true
         } else {
             shoppingBagButton.setImage(UIImage(named: "like_unselected"), for: .normal)
@@ -73,7 +77,6 @@ class KakaoCollectionViewCell: UICollectionViewCell {
                 priceLabel.text = "\(result ?? "")원"
             }
         }
-        productIdstr = data.productID
     }
         func configureHierarchy(){
             contentView.addSubview(wordView)

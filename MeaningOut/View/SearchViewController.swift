@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 1, display: 30, items: [])
     
     var lastWord = ""
-    static var productId: [String] = []
+    static var product: [String] = []
     var ud = UserDefaultManager()
     
     var numResultLabel = {
@@ -128,28 +128,28 @@ class SearchViewController: UIViewController {
     
     @objc func simButtonClicked(){
         shoppingList.start = 1
-        //shoppingList.items?.removeAll()
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "sim")
         selectOptionBtnAction(simButton)
     }
     
     @objc func dateButtonClicked(){
         shoppingList.start = 1
-        //shoppingList.items?.removeAll()
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "date")
         selectOptionBtnAction(dateButton)
     }
     
     @objc func ascButtonClicked(){
         shoppingList.start = 1
-        //shoppingList.items?.removeAll()
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "asc")
         selectOptionBtnAction(ascButton)
     }
     
     @objc func dscButtonClicked(){
         shoppingList.start = 1
-        //shoppingList.items?.removeAll()
+        shoppingList.items?.removeAll()
         requestSearch(typeText: "dsc")
         selectOptionBtnAction(dscButton)
     }
@@ -214,11 +214,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.configurecell(data: data)
         cell.wordView.layer.cornerRadius = 10
         cell.wordView.clipsToBounds = true
-        if cell.shoppingBagButton.isSelected == true {
-            let id = shoppingList.items?[indexPath.item].productID
-            SearchViewController.productId = ["\(id ?? "")"]
-            UserDefaults.standard.set(id, forKey: "id")
-        }
         return cell
         }
 }

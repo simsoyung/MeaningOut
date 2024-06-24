@@ -34,6 +34,7 @@ class SettingViewController: UIViewController {
             mainImage.image = UIImage(named: "\(backImage)")
         }
     }
+
     
     func configureHierarchy(){
         view.addSubview(mainImage)

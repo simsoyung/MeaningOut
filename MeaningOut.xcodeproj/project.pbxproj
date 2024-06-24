@@ -41,6 +41,7 @@
 		4689FBCE2C2029B700F399B6 /* KakaoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */; };
 		4689FBD02C20AC5400F399B6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBCF2C20AC5400F399B6 /* WebViewController.swift */; };
 		4689FBD22C20D0CC00F399B6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */; };
+		46BD5E432C294FEE00BF58C4 /* NaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD5E422C294FEE00BF58C4 /* NaveManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,7 @@
 		4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4689FBCF2C20AC5400F399B6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		46BD5E422C294FEE00BF58C4 /* NaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaveManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				4689FBAE2C1C538F00F399B6 /* UserDefaults.swift */,
 				4689FBB62C1CB75000F399B6 /* Extension.swift */,
 				4689FBC22C1F898300F399B6 /* SearchTypeButton.swift */,
+				46BD5E422C294FEE00BF58C4 /* NaveManager.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				4689FBAF2C1C538F00F399B6 /* UserDefaults.swift in Sources */,
 				4687DFA82C1AF32E00DB5CB1 /* SceneDelegate.swift in Sources */,
 				4689FB932C1B065700F399B6 /* OrangeButton.swift in Sources */,
+				46BD5E432C294FEE00BF58C4 /* NaveManager.swift in Sources */,
 				4689FBCE2C2029B700F399B6 /* KakaoCollectionViewCell.swift in Sources */,
 				4689FBA02C1BF1C100F399B6 /* NicknameTextField.swift in Sources */,
 			);

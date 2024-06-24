@@ -11,7 +11,7 @@ import Kingfisher
 class KakaoCollectionViewCell: UICollectionViewCell {
     static let id = "KakaoCollectionViewCell"
     
-    var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 0, display: 0, items: [])
+    var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 1, display: 30, items: [])
     var ud = UserDefaultManager()
     let wordView = UIImageView()
     let nameLabel = UILabel()

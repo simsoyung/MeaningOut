@@ -139,18 +139,17 @@ extension MainViewController: UISearchBarDelegate {
         if let text = searchBar.text {
             if text.isEmpty {
                 return false
-            } else {
-                if MainViewController.wordList.contains(text){
-                    print("중복된 글자")
-                } else {
-                    UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
-                    MainViewController.wordList.append(text)
-                }
-                tableView.reloadData()
-                searchBar.text = ""
-                let searchVC = SearchViewController()
-                navigationController?.pushViewController(searchVC, animated: true)
             }
+            if MainViewController.wordList.contains(text){
+                print("중복된 글자")
+            } else {
+                MainViewController.wordList.append(text)
+                UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+            }
+            tableView.reloadData()
+            searchBar.text = ""
+            let searchVC = SearchViewController()
+            navigationController?.pushViewController(searchVC, animated: true)
         }
         return true
     }

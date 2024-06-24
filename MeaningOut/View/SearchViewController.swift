@@ -40,6 +40,7 @@ class SearchViewController: UIViewController {
         if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
             if let textWord = items.last {
                 navigationItem.title = "\(textWord)"
+                lastWord = textWord
                 configureHierarchy()
                 configureLayout()
                 configureUI()
@@ -55,7 +56,6 @@ class SearchViewController: UIViewController {
                 dscButton.addTarget(self, action: #selector(dscButtonClicked), for: .touchUpInside)
             }
         }
-        
     }
     
     func configureHierarchy(){
@@ -69,7 +69,6 @@ class SearchViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(KakaoCollectionViewCell.self, forCellWithReuseIdentifier: KakaoCollectionViewCell.id)
-
     }
     func configureLayout(){
         numResultLabel.snp.makeConstraints { make in
@@ -129,28 +128,28 @@ class SearchViewController: UIViewController {
     
     @objc func simButtonClicked(){
         shoppingList.start = 1
-        shoppingList.items?.removeAll()
+        //shoppingList.items?.removeAll()
         requestSearch(typeText: "sim")
         selectOptionBtnAction(simButton)
     }
     
     @objc func dateButtonClicked(){
         shoppingList.start = 1
-        shoppingList.items?.removeAll()
+        //shoppingList.items?.removeAll()
         requestSearch(typeText: "date")
         selectOptionBtnAction(dateButton)
     }
     
     @objc func ascButtonClicked(){
         shoppingList.start = 1
-        shoppingList.items?.removeAll()
+        //shoppingList.items?.removeAll()
         requestSearch(typeText: "asc")
         selectOptionBtnAction(ascButton)
     }
     
     @objc func dscButtonClicked(){
         shoppingList.start = 1
-        shoppingList.items?.removeAll()
+        //shoppingList.items?.removeAll()
         requestSearch(typeText: "dsc")
         selectOptionBtnAction(dscButton)
     }
@@ -168,7 +167,6 @@ class SearchViewController: UIViewController {
                 if self.shoppingList.start == 1 {
                     self.shoppingList = value
                     self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
-                    
                 } else {
                     self.shoppingList.items?.append(contentsOf: value.items!)
                 }
@@ -207,7 +205,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shoppingList.items!.count
+        return shoppingList.items?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -231,9 +229,9 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
         for item in indexPaths {
             if shoppingList.items!.count - 2 == item.row && shoppingList.total > shoppingList.start{
                 shoppingList.start += shoppingList.display
-                print(shoppingList.start)
                 let type = UserDefaults.standard.string(forKey: "type")
                 requestSearch(typeText: "\(type!)")
+                
             }
         }
     }

@@ -11,7 +11,7 @@ import Kingfisher
 class KakaoCollectionViewCell: UICollectionViewCell {
     static let id = "KakaoCollectionViewCell"
     
-    var shoppingList = Item(title: "", link: "", image: "", lprice: "", mallName: "", productID: "",productType: "", brand: "", maker: "")
+    var shoppingList = Item(title: "", link: "", image: "", lprice: "", mallName: "", productId: "",productType: "", brand: "", maker: "")
     var ud = UserDefaultManager()
     let wordView = UIImageView()
     let nameLabel = UILabel()

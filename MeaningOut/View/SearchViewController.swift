@@ -167,6 +167,7 @@ class SearchViewController: UIViewController {
                 if self.shoppingList.start == 1 {
                     self.shoppingList = value
                     self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
+                    print(self.shoppingList)
                 } else {
                     self.shoppingList.items?.append(contentsOf: value.items!)
                 }

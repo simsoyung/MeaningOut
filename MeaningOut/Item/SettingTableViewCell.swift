@@ -24,6 +24,8 @@ class SettingTableViewCell: UITableViewCell {
         contentView.addSubview(shopImage)
         shopImage.image = UIImage(named: "like_selected")
         likeLabel.text = "\(SearchViewController.product.count)개의 상품"
+        let idCount = UserDefaults.standard.stringArray(forKey: "id")
+        likeLabel.text = "\(idCount?.count ?? 0)개의 상품"
         label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(contentView.safeAreaLayoutGuide).offset(20)

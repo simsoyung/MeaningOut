@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController {
         configureLayout()
         configureUI()
         selecteButton.isEnabled = false
+        textField.autocorrectionType = .no
+        textField.spellCheckingType = .no
     }
     
     override func viewWillAppear(_ animated: Bool) {

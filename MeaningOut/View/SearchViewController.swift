@@ -37,14 +37,14 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationController?.navigationBar.tintColor = .black
-        if let items = UserDefaults.standard.array(forKey: "word") as? [String] {
+        if let items = UserDefaults.standard.stringArray(forKey: "word") {
             if let textWord = items.last {
                 navigationItem.title = "\(textWord)"
                 lastWord = textWord
                 configureHierarchy()
                 configureLayout()
                 configureUI()
-                UserDefaults.standard.set("sim", forKey: "type")
+                //UserDefaults.standard.set("sim", forKey: "type")
                 requestSearch(typeText: "sim")
                 btArray.append(simButton)
                 btArray.append(dateButton)
@@ -115,6 +115,9 @@ class SearchViewController: UIViewController {
             for Btn in btArray {
                 if Btn == sender {
                     Btn.isSelected = true
+                    if Btn.isSelected == true {
+                        UserDefaults.standard.set(self.productId, forKey: "id")
+                    }
                     Btn.setTitleColor(TextResource.ColorRGB.whiteUI, for: .selected)
                     Btn.backgroundColor = TextResource.ColorRGB.darkGrayUI
                     
@@ -129,13 +132,16 @@ class SearchViewController: UIViewController {
     @objc func simButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
+        ud.type = "sim"
         requestSearch(typeText: "sim")
+        
         selectOptionBtnAction(simButton)
     }
     
     @objc func dateButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
+        ud.type = "date"
         requestSearch(typeText: "date")
         selectOptionBtnAction(dateButton)
     }
@@ -143,6 +149,7 @@ class SearchViewController: UIViewController {
     @objc func ascButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
+        ud.type = "asc"
         requestSearch(typeText: "asc")
         selectOptionBtnAction(ascButton)
     }
@@ -150,6 +157,7 @@ class SearchViewController: UIViewController {
     @objc func dscButtonClicked(){
         shoppingList.start = 1
         shoppingList.items?.removeAll()
+        ud.type = "dsc"
         requestSearch(typeText: "dsc")
         selectOptionBtnAction(dscButton)
     }
@@ -171,11 +179,11 @@ class SearchViewController: UIViewController {
                 } else {
                     self.shoppingList.items?.append(contentsOf: value.items!)
                 }
+                guard self.collectionView.numberOfSections > 0 else { return }
+                print("스크롤 top: \(self.collectionView.numberOfSections)")
+                self.collectionView.setContentOffset(.zero, animated: true)
                 self.collectionView.reloadData()
                 UserDefaults.standard.set(typeText, forKey: "type")
-                if self.shoppingList.start == 1 {
-                    self.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-                }
             case .failure(let error):
                 print(error)
             }
@@ -227,7 +235,6 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
                 shoppingList.start += shoppingList.display
                 let type = UserDefaults.standard.string(forKey: "type")
                 requestSearch(typeText: "\(type!)")
-                
             }
         }
     }

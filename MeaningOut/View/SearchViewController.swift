@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     var shoppingList = KakaoSearch(lastBuildDate: "", total: 0, start: 1, display: 30, items: [])
     
     var lastWord = ""
-    var productId: [String] = []
+    static var product: [String] = []
     var ud = UserDefaultManager()
     
     var numResultLabel = {
@@ -40,6 +40,7 @@ class SearchViewController: UIViewController {
         if let items = UserDefaults.standard.stringArray(forKey: "word") {
             if let textWord = items.last {
                 navigationItem.title = "\(textWord)"
+                lastWord = textWord
                 configureHierarchy()
                 configureLayout()
                 configureUI()
@@ -55,7 +56,6 @@ class SearchViewController: UIViewController {
                 dscButton.addTarget(self, action: #selector(dscButtonClicked), for: .touchUpInside)
             }
         }
-        
     }
     
     func configureHierarchy(){
@@ -69,7 +69,6 @@ class SearchViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(KakaoCollectionViewCell.self, forCellWithReuseIdentifier: KakaoCollectionViewCell.id)
-
     }
     func configureLayout(){
         numResultLabel.snp.makeConstraints { make in
@@ -176,6 +175,7 @@ class SearchViewController: UIViewController {
                 if self.shoppingList.start == 1 {
                     self.shoppingList = value
                     self.numResultLabel.text = "\(self.shoppingList.total.formatted())개의 검색 결과"
+                    print(self.shoppingList)
                 } else {
                     self.shoppingList.items?.append(contentsOf: value.items!)
                 }
@@ -214,7 +214,7 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shoppingList.items!.count
+        return shoppingList.items?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -223,12 +223,6 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.configurecell(data: data)
         cell.wordView.layer.cornerRadius = 10
         cell.wordView.clipsToBounds = true
-        if cell.shoppingBagButton.isSelected == true {
-            let id = shoppingList.items?[indexPath.item].productID
-            UserDefaults.standard.set(id, forKey: "id")
-            self.productId.append(id ?? "")
-            
-        }
         return cell
         }
 }
@@ -240,7 +234,7 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
             if shoppingList.items!.count - 2 == item.row && shoppingList.total > shoppingList.start{
                 shoppingList.start += shoppingList.display
                 let type = UserDefaults.standard.string(forKey: "type")
-                requestSearch(typeText: "\(type ?? "sim")")
+                requestSearch(typeText: "\(type!)")
             }
         }
     }

@@ -91,8 +91,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
             return cell.isSelected = false
         }
         let row = MainViewController.wordList[indexPath.row]
-        MainViewController.wordList.append("\(row)")
-        UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+        if MainViewController.wordList.contains(row){
+            print("중복된 글자")
+        } else {
+            MainViewController.wordList.append("\(row)")
+            UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+        }
         navigationController?.pushViewController(SearchViewController(), animated: true)
     }
     
@@ -139,20 +143,17 @@ extension MainViewController: UISearchBarDelegate {
         if let text = searchBar.text {
             if text.isEmpty {
                 return false
-            } else {
-                if MainViewController.wordList.contains(text){
-                    print("중복된 글자")
-                    UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
-                    MainViewController.wordList.append(text)
-                } else {
-                    UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
-                    MainViewController.wordList.append(text)
-                }
-                tableView.reloadData()
-                searchBar.text = ""
-                let searchVC = SearchViewController()
-                navigationController?.pushViewController(searchVC, animated: true)
             }
+            if MainViewController.wordList.contains(text){
+                print("중복된 글자")
+            } else {
+                MainViewController.wordList.append(text)
+                UserDefaults.standard.set(MainViewController.wordList, forKey: "word")
+            }
+            tableView.reloadData()
+            searchBar.text = ""
+            let searchVC = SearchViewController()
+            navigationController?.pushViewController(searchVC, animated: true)
         }
         return true
     }

@@ -27,7 +27,14 @@ class UserDefaultManager {
             UserDefaults.standard.set("\(newValue) 가입", forKey: "date")
         }
     }
-    
+    var word: [String]?{
+        get{
+            return UserDefaults.standard.stringArray(forKey: "word")
+        }
+        set{
+            UserDefaults.standard.set(newValue, forKey: "word")
+        }
+    }
     
     var nickname: String{
         get{

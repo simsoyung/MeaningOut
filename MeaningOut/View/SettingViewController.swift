@@ -34,6 +34,7 @@ class SettingViewController: UIViewController {
             mainImage.image = UIImage(named: "\(backImage)")
         }
     }
+
     
     func configureHierarchy(){
         view.addSubview(mainImage)
@@ -99,8 +100,7 @@ class SettingViewController: UIViewController {
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             if indexPath.row == 4 {
-                let alert = UIAlertController(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n 탈퇴하시겠습니까?", preferredStyle: .alert)
-                let open = UIAlertAction(title: "확인", style: .default) { _ in
+                showAlert(title: "탈퇴하기", message: "탈퇴를 하면 데이터가 모두 초기화됩니다. \n 탈퇴하시겠습니까?", button: "탈퇴") {
                     UserDefaults.standard.set(false, forKey: "isUser")
                     UserDefaults.standard.removeObject(forKey: "word")
                     MainViewController.wordList.removeAll()
@@ -110,10 +110,6 @@ class SettingViewController: UIViewController {
                     sceneDelegate?.window?.rootViewController = rootViewController
                     sceneDelegate?.window?.makeKeyAndVisible()
                 }
-                let delete = UIAlertAction(title: "취소", style: .destructive)
-                alert.addAction(open)
-                alert.addAction(delete)
-                self.present(alert, animated: true)
             }
         }
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

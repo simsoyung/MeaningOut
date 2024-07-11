@@ -41,6 +41,9 @@
 		4689FBCE2C2029B700F399B6 /* KakaoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */; };
 		4689FBD02C20AC5400F399B6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBCF2C20AC5400F399B6 /* WebViewController.swift */; };
 		4689FBD22C20D0CC00F399B6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */; };
+		46BD5E432C294FEE00BF58C4 /* NaveManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BD5E422C294FEE00BF58C4 /* NaveManager.swift */; };
+		46D6BBCF2C3A224D00A8B683 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 46D6BBCE2C3A224D00A8B683 /* RealmSwift */; };
+		46D6BBD12C3A228800A8B683 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D6BBD02C3A228800A8B683 /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +78,8 @@
 		4689FBCD2C2029B700F399B6 /* KakaoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoCollectionViewCell.swift; sourceTree = "<group>"; };
 		4689FBCF2C20AC5400F399B6 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4689FBD12C20D0CC00F399B6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		46BD5E422C294FEE00BF58C4 /* NaveManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaveManager.swift; sourceTree = "<group>"; };
+		46D6BBD02C3A228800A8B683 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46D6BBCF2C3A224D00A8B683 /* RealmSwift in Frameworks */,
 				4689FB8B2C1AFC7D00F399B6 /* Toast in Frameworks */,
 				4689FB822C1AFC5D00F399B6 /* SnapKit in Frameworks */,
 				4689FB852C1AFC6900F399B6 /* Alamofire in Frameworks */,
@@ -113,6 +119,7 @@
 		4687DFA42C1AF32E00DB5CB1 /* MeaningOut */ = {
 			isa = PBXGroup;
 			children = (
+				46D6BBCC2C3A21EC00A8B683 /* Database */,
 				4689FBA92C1C2A8200F399B6 /* Item */,
 				4689FB982C1B0B8700F399B6 /* View */,
 				4689FB8F2C1B05DC00F399B6 /* Object */,
@@ -139,6 +146,7 @@
 				4689FBAE2C1C538F00F399B6 /* UserDefaults.swift */,
 				4689FBB62C1CB75000F399B6 /* Extension.swift */,
 				4689FBC22C1F898300F399B6 /* SearchTypeButton.swift */,
+				46BD5E422C294FEE00BF58C4 /* NaveManager.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -170,6 +178,14 @@
 			path = Item;
 			sourceTree = "<group>";
 		};
+		46D6BBCC2C3A21EC00A8B683 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				46D6BBD02C3A228800A8B683 /* Database.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -192,6 +208,7 @@
 				4689FB872C1AFC7400F399B6 /* IQKeyboardManagerSwift */,
 				4689FB8A2C1AFC7D00F399B6 /* Toast */,
 				4689FB8D2C1AFC9300F399B6 /* Kingfisher */,
+				46D6BBCE2C3A224D00A8B683 /* RealmSwift */,
 			);
 			productName = MeaningOut;
 			productReference = 4687DFA22C1AF32E00DB5CB1 /* MeaningOut.app */;
@@ -227,6 +244,7 @@
 				4689FB862C1AFC7400F399B6 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				4689FB892C1AFC7D00F399B6 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				4689FB8C2C1AFC9300F399B6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				46D6BBCD2C3A224D00A8B683 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 4687DFA32C1AF32E00DB5CB1 /* Products */;
 			projectDirPath = "";
@@ -279,7 +297,9 @@
 				4689FBAF2C1C538F00F399B6 /* UserDefaults.swift in Sources */,
 				4687DFA82C1AF32E00DB5CB1 /* SceneDelegate.swift in Sources */,
 				4689FB932C1B065700F399B6 /* OrangeButton.swift in Sources */,
+				46BD5E432C294FEE00BF58C4 /* NaveManager.swift in Sources */,
 				4689FBCE2C2029B700F399B6 /* KakaoCollectionViewCell.swift in Sources */,
+				46D6BBD12C3A228800A8B683 /* Database.swift in Sources */,
 				4689FBA02C1BF1C100F399B6 /* NicknameTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,6 +567,14 @@
 				minimumVersion = 7.12.0;
 			};
 		};
+		46D6BBCD2C3A224D00A8B683 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -574,6 +602,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4689FB8C2C1AFC9300F399B6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		46D6BBCE2C3A224D00A8B683 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 46D6BBCD2C3A224D00A8B683 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
